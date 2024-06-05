@@ -2,6 +2,7 @@
 
 :root{
   --MAINBGCOLOUR: #333;
+  --HEADERBGCOLOUR: rgb(26, 26, 26);
   --FONTCOLOUR: #fff;
 }
 
@@ -20,8 +21,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: var(--MAINBGCOLOUR);
+  background-color: var(--HEADERBGCOLOUR);
   color: var(--FONTCOLOUR);
+  height: 15vh;
 }
 
 h1{
@@ -36,4 +38,11 @@ h1{
     flex-direction: column;
     gap: 1rem;
     padding-right: 30px;
+}
+
+/* CONTENT */
+
+.contentContainer{
+  background-color: var(--MAINBGCOLOUR);
+  height: 85vh;
 }

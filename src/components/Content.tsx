@@ -2,8 +2,8 @@
 
 const Content = () => {
   return (
-    <div>
-
+    <div className="contentContainer">
+      
     </div>
   )
 }
