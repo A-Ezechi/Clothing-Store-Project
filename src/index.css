@@ -44,5 +44,26 @@ h1{
 
 .contentContainer{
   background-color: var(--MAINBGCOLOUR);
-  height: 85vh;
+  /* height: 85vh; */
+}
+
+/* PRODUCTS */
+
+.productInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid white;
+  width: fit-content;
+}
+
+.contentContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5rem;
+    padding: 2rem;
+    border: 3px solid blue;
 }
