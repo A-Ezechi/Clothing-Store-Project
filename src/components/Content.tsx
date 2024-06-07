@@ -10,6 +10,7 @@ const Content = () => {
     description: string
     price: number
     image: string
+    rating: number
   }
 
 // FETCH DATA
@@ -28,11 +29,12 @@ const Content = () => {
     return products.map((product) => (
       <div key={product.id} className="productCard">
         <div className="productInfo">
-          <h3>{product.name}</h3>
-          <img src={product.image} alt={product.name} />
-          <p>{product.description}</p>
-          <h4>£{product.price}</h4>
-          <button>Add to Cart</button>
+          <h3 className="productName">{product.name}</h3>
+          <img className="productPicture" src={product.image} alt={product.name} />
+          <p className="productDescription">{product.description}</p>
+          <h4 className="price">£{product.price}</h4>
+          <p>Rating: {product.rating}</p>
+          <button className="toCart">Add to Cart</button>
         </div>
       </div>
     ));
