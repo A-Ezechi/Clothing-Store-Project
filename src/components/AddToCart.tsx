@@ -1,7 +1,9 @@
 import { useState } from "react"
 
-const AddToCart = () => {
+const AddToCart = (): void => {
      const [cart, setCart] = useState<number | string[]>([])
+
+     
 
 
 }

@@ -55,7 +55,7 @@ const Content = () => {
 
   //SEND TO CART
 
-  const sendToCart = (id: number) => {
+  const sendToCart = (id: number): Cart => {
     setCart([...cart, id])
   }
 
