@@ -31,7 +31,16 @@ h1{
     font-size: 3rem;
     font-style: italic;
     text-decoration: line-through;
-    
+}
+
+.viewCartbtn{
+    background-color: transparent;
+    color: var(--FONTCOLOUR);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: larger;
 }
 
 .cart{
@@ -96,4 +105,10 @@ h1{
     grid-template-rows: 1fr 1fr 1fr;
     gap: 5rem;
     padding: 2rem;
+}
+
+/* CATEGORIES */
+
+.categoriesContainer{
+  height: 40vh;
 }

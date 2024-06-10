@@ -1,4 +1,5 @@
-
+import {faCartPlus} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 const Header = () => {
   return (
@@ -7,10 +8,10 @@ const Header = () => {
             <h1>A's Wardrobe</h1>
         </div>
         <div className="cart">
-            <p>Total Items:</p>
-            <p>Total Price:</p>
+            {/* <p>Total Items:</p>
+            <p>Total Price:</p> */}
         
-        <button className="viewCartbtn">View Cart</button>
+        <button className="viewCartbtn"><FontAwesomeIcon icon={faCartPlus} /> :£Total </button>
         </div>
     </div>
   )

@@ -57,7 +57,7 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
                 <div className="productInfo">
                     <h3 className="productName">{product.title}</h3>
                     <img className="productPicture" src={product.image} alt={product.title} />
-                    <p className="productDescription">{product.description}</p>
+                    {/* <p className="productDescription">{product.description}</p> */}
                     <h4 className="price">Price: £{product.price}</h4>
                     <button 
                         className="toCart"
