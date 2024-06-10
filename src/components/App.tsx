@@ -1,13 +1,16 @@
 import Content from "../components/Content"
 import Header from "../components/Header"
+import { Provider } from "./Context"
 
 
 function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Content />
+      <Provider>
+        <Header />
+        <Content />
+      </Provider>
     </div>
   )
 }

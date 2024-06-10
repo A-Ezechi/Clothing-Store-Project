@@ -1,11 +1,9 @@
-import { useState } from "react"
+import React from 'react'
 
-const AddToCart = (): void => {
-     const [cart, setCart] = useState<number | string[]>([])
-
-     
-
-
+const AddToCart: React.FC = () => {
+  return (
+    <div>AddToCart</div>
+  )
 }
 
 export default AddToCart
