@@ -1,8 +1,9 @@
 /* ROOT */
 
 :root{
-  --MAINBGCOLOUR: #333;
-  --HEADERBGCOLOUR: rgb(26, 26, 26);
+  --MAINBGCOLOUR: rgb(49, 49, 49);
+  --CATEGORIESBGCOLOUR: rgb(37, 37, 37);
+  --HEADERBGCOLOUR: rgb(15, 15, 15);
   --FONTCOLOUR: #fff;
 }
 
@@ -23,12 +24,12 @@
   padding: 1rem 2rem;
   background-color: var(--HEADERBGCOLOUR);
   color: var(--FONTCOLOUR);
-  height: 15vh;
+  height: 6vh;
   border-bottom: black 3px solid;
 }
 
-h1{
-    font-size: 3rem;
+h2{
+    font-size: 1.5rem;
     font-style: italic;
     text-decoration: line-through;
 }
@@ -111,4 +112,39 @@ h1{
 
 .categoriesContainer{
   height: 40vh;
+  background-color: var(--CATEGORIESBGCOLOUR);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories{
+  display: flex;
+  gap: 1rem;
+}
+
+.category{
+  padding: 0.5rem 1rem;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 20px;
+  border: 1px solid var(--FONTCOLOUR);
+  text-transform: capitalize;
+  background-color: transparent;
+  color: var(--FONTCOLOUR);
+  cursor: pointer;
+}
+
+.category:hover{
+  background-color: var(--FONTCOLOUR);
+  color: var(--MAINBGCOLOUR);
+}
+
+h1{
+  font-size: 6rem;
+  color: var(--FONTCOLOUR);
+  text-decoration: line-through;
+  font-style: italic;
+  margin-bottom: 2rem;
 }
