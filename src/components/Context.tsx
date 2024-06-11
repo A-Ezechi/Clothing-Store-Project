@@ -1,6 +1,8 @@
 import React, { ReactNode, createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 
+// INTERFACES
+
 interface Product {
     id: number
     title: string
@@ -19,6 +21,7 @@ interface Cart {
 interface ContextProps {
     products: Product[];
     trolley: Cart[];
+    totalPrice: number;
     setTrolley: React.Dispatch<React.SetStateAction<Cart[]>>;
     addToCart: (cart: Cart, event: React.MouseEvent<HTMLButtonElement>) => void
     fetchData: () => void;
@@ -27,9 +30,12 @@ interface ContextProps {
 
 const Context = createContext<ContextProps | undefined>(undefined)
 
+    // STATE MANAGEMENT
+
 const Provider: React.FC<{children: ReactNode}> = ({children}) => {
     const [products, setProducts] = useState<Product[]>([])
     const [trolley, setTrolley] = useState<Cart[]>([])
+    const [totalPrice, setTotalPrice] = useState<number>(0)
 
     // FETCH DATA
 
@@ -81,11 +87,13 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
         }
 
         setTrolley((trolley) => [...trolley, cartItem])
+        setTotalPrice((totalPrice) => Number((totalPrice + product.price).toFixed(2)))
         console.log(trolley)
+        console.log(totalPrice)
     }
 
     return (
-        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart }}>
+        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice }}>
             {children}
         </Context.Provider>
     )

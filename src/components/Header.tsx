@@ -1,7 +1,13 @@
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { Context, ContextProps } from './Context'
 
-const Header = () => {
+const Header: React.FC = () => {
+
+  const context = React.useContext(Context)
+  const {totalPrice} = context as ContextProps
+
   return (
     <div className="headerContainer">
         <div className="header">
@@ -11,7 +17,7 @@ const Header = () => {
             {/* <p>Total Items:</p>
             <p>Total Price:</p> */}
         
-        <button className="viewCartbtn"><FontAwesomeIcon icon={faCartPlus} /> :£Total </button>
+        <button className="viewCartbtn"><FontAwesomeIcon icon={faCartPlus} /> : £ {totalPrice} </button>
         </div>
     </div>
   )
