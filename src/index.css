@@ -34,16 +34,6 @@ h2{
     text-decoration: line-through;
 }
 
-.viewCartbtn{
-    background-color: transparent;
-    color: var(--FONTCOLOUR);
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: larger;
-}
-
 .cart{
     display: flex;
     flex-direction: column;
@@ -55,7 +45,6 @@ h2{
 
 .contentContainer{
   background-color: var(--MAINBGCOLOUR);
-  /* height: 85vh; */
 }
 
 /* PRODUCTS */
@@ -67,7 +56,8 @@ h2{
   align-items: center;
   gap: 2rem;
   padding: 2rem;
-  width: 30rem;
+  width: 100%;
+  height: 100%;
   box-shadow: 3px 3px 10px black;
   border-radius: 10px;
 }
@@ -106,6 +96,21 @@ h2{
     grid-template-rows: 1fr 1fr 1fr;
     gap: 5rem;
     padding: 2rem;
+}
+
+.toCart{
+    background-color: var(--FONTCOLOUR);
+    color: var(--MAINBGCOLOUR);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: larger;
+}
+
+.toCart:hover{
+    background-color: rgb(159, 159, 159);
+    color: var(--MAINBGCOLOUR);
 }
 
 /* CATEGORIES */
