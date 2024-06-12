@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
+interface Category {
+    id: number
+    name: string
+}
+
 const Categories = () => {
     const [categories, setCategories] = useState<string[]>([])
+    const [chosenCategory, setChosenCategory] = useState<string[]>([])
 
     const fetchCategories = async () => {
         try{
@@ -12,6 +18,10 @@ const Categories = () => {
         } catch (error) {
             console.error(`Unable to fetch categories: ${error}`)}
         }
+
+    const setCategory = (id: Category, name: Category) => {
+        
+    }
 
     useEffect(() => {
         fetchCategories()
