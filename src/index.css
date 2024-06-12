@@ -2,7 +2,7 @@
 
 :root{
   --MAINBGCOLOUR: rgb(49, 49, 49);
-  --CATEGORIESBGCOLOUR: rgb(37, 37, 37);
+  --CATEGORIESBGCOLOUR: rgba(0, 0, 0, 0.782);
   --HEADERBGCOLOUR: rgb(15, 15, 15);
   --FONTCOLOUR: #fff;
 }
@@ -22,10 +22,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: var(--HEADERBGCOLOUR);
+  background-color: rgba(0, 0, 0, 0.824);
   color: var(--FONTCOLOUR);
   height: 6vh;
-  border-bottom: black 3px solid;
+  border-bottom: rgba(0, 0, 0, 0.574) 3px solid;
 }
 
 h2{
@@ -41,10 +41,26 @@ h2{
     padding-right: 30px;
 }
 
+.viewCartBtn{
+    background-color: transparent;
+    color: var(--MAINBGCOLOUR);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--FONTCOLOUR);
+    color: var(--FONTCOLOUR);
+    cursor: pointer;
+    font-size: medium;
+}
+
+.viewCartBtn:hover{
+    background-color: var(--FONTCOLOUR);
+    color: var(--MAINBGCOLOUR);
+}
+
 /* CONTENT */
 
 .contentContainer{
-  background-color: var(--MAINBGCOLOUR);
+  background-color: var(--CATEGORIESBGCOLOUR);
 }
 
 /* PRODUCTS */
@@ -56,38 +72,46 @@ h2{
   align-items: center;
   gap: 2rem;
   padding: 2rem;
-  width: 100%;
+  width: 75%;
   height: 100%;
   box-shadow: 3px 3px 10px black;
+  background-color: var(--MAINBGCOLOUR);
   border-radius: 10px;
 }
 
 .productName{
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 100%;
   text-align: center;
   color: var(--FONTCOLOUR);
 }
 
-.productDescription{
+/* .productDescription{
   font-size: 0.9rem;
   width: 100%;
   text-align: center;
   color: var(--FONTCOLOUR);
-}
+} */
 
 .productPicture{
-  width: 80%;
-  height: 15rem;
+  width: 70%;
+  height: 12rem;
   object-fit: cover;
   background-position: center;
   border-radius: 10px;
 }
 
 .price{
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: var(--FONTCOLOUR);
+}
 
+.priceAddToCart{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 3rem;
 }
 
 .contentContainer{
@@ -105,7 +129,7 @@ h2{
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    font-size: larger;
+    font-size: small;
 }
 
 .toCart:hover{
@@ -118,6 +142,10 @@ h2{
 .categoriesContainer{
   height: 40vh;
   background-color: var(--CATEGORIESBGCOLOUR);
+  background-image: url(../public/img/background-image.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;

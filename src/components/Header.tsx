@@ -14,10 +14,7 @@ const Header: React.FC = () => {
             <h2>A's Wardrobe</h2>
         </div>
         <div className="cart">
-            {/* <p>Total Items:</p>
-            <p>Total Price:</p> */}
-        
-        <button className="viewCartbtn"><FontAwesomeIcon icon={faCartPlus} /> : £ {totalPrice} </button>
+        <button className="viewCartBtn"><FontAwesomeIcon icon={faCartPlus} /> : £ {totalPrice} </button>
         </div>
     </div>
   )
