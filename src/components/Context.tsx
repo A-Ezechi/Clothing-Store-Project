@@ -10,6 +10,7 @@ interface Product {
     price: number
     image?: string
     rating?: number
+    category?: string
 }
 
 interface Cart {
@@ -43,6 +44,7 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
         try {
             const response = await axios.get("https://fakestoreapi.com/products")
             setProducts(response.data)
+            console.log(response.data)
         } catch (error) {
             console.error(error)
         }
