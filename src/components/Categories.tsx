@@ -3,14 +3,14 @@ import { Context, ContextProps } from "./Context"
 import React from "react"
 import axios from "axios"
 
-interface Category {
-    category: string
+interface Product {
     id: number
     title: string
     description?: string
     price: number
     image?: string
     rating?: number
+    category?: string
 }
 
 const Categories: React.FC = () => {
@@ -38,38 +38,37 @@ const Categories: React.FC = () => {
     }, [])
 
 // HANDLES CATEGORY CLICK
-        const handleCategoryClick = (category: Category) => {
-            setChosenCategory(category.category)
+        const handleCategoryClick = (category: string) => {
+            setChosenCategory(category)
         }
 
     // CHANGES CATEGORY AND DISPLAYS ON UI
-        const changeCategory = () => { 
-            
-            const filteredProducts = chosenCategory ? products.filter((product: Category) => product.category === chosenCategory) : products
+        // const changeCategory = () => { 
+        //     const filteredProducts = chosenCategory ? products.filter((product: Product) => product.category === chosenCategory) : products
 
-            return (
-                <div className="products">
-                    {filteredProducts.map((product: Product) => (
-                        <div className="productCard" key={product.id}>
-                        <div className="productInfo">
-                        <img className="productPicture" src={product.image} alt={product.title} />
-                        <h3 className="productName">{product.title}</h3>
-                        <div className="price">
-                        <div className="priceAddToCart">
-                            <h4 className="price">Price: £{product.price}</h4>
-                            <button 
-                                className="toCart"
-                                onClick={(event) => addToCart(product, event)}
-                                >Add to Cart
-                            </button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    ))}
-            </div>
-            )
-        }
+        //     return (
+        //         <div className="products">
+        //             {filteredProducts.map((product: Product) => (
+        //                 <div className="productCard" key={product.id}>
+        //                 <div className="productInfo">
+        //                 <img className="productPicture" src={product.image} alt={product.title} />
+        //                 <h3 className="productName">{product.title}</h3>
+        //                 <div className="price">
+        //                 <div className="priceAddToCart">
+        //                     <h4 className="price">Price: £{product.price}</h4>
+        //                     <button 
+        //                         className="toCart"
+        //                         onClick={(event) => addToCart(product, event)}
+        //                         >Add to Cart
+        //                     </button>
+        //                 </div>
+        //                 </div>
+        //             </div>
+        //             </div>
+        //             ))}
+        //     </div>
+        //     )
+        // }
 
 
     return (
@@ -79,9 +78,13 @@ const Categories: React.FC = () => {
                 {categories.map((category, index) => 
                     <div className="categoryContainer">
                         <div className="id" key={index}></div>
-                        <button className="category">{category}</button>
+                        <button 
+                        className="category"
+                        onClick={() => handleCategoryClick(category)}
+                        >{category}</button>
                     </div>)}
-            </div>         
+            </div>
+            {changeCategory()}
         </div>
     )
 }

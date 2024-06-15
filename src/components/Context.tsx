@@ -37,6 +37,8 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
     const [products, setProducts] = useState<Product[]>([])
     const [trolley, setTrolley] = useState<Cart[]>([])
     const [totalPrice, setTotalPrice] = useState<number>(0)
+    const [categories, setCategories] = useState<string[]>([])
+    const [chosenCategory, setChosenCategory] = useState<string | null>(null)
 
     // FETCH DATA
 
@@ -95,6 +97,50 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
         setTotalPrice((totalPrice) => Number((totalPrice + product.price).toFixed(2)))
         console.log(trolley)
         console.log(totalPrice)
+    }
+
+    // FETCHES CATEGORIES
+
+    const fetchCategories = async () => {
+        try{
+            const response = await axios.get("https://fakestoreapi.com/products/categories")
+            setCategories(response.data)
+            console.log(response.data)
+        } catch (error) {
+            console.error(`Unable to fetch categories: ${error}`)}
+        }
+
+    // HANDLES CATEGORY CLICK
+    const handleCategoryClick = (category: string) => {
+        setChosenCategory(category)
+    }
+
+    // CHANGES CATEGORY AND DISPLAYS ON UI
+    const changeCategory = () => { 
+        const filteredProducts = chosenCategory ? products.filter((product: Product) => product.category === chosenCategory) : products
+
+        return (
+            <div className="products">
+                {filteredProducts.map((product: Product) => (
+                    <div className="productCard" key={product.id}>
+                    <div className="productInfo">
+                    <img className="productPicture" src={product.image} alt={product.title} />
+                    <h3 className="productName">{product.title}</h3>
+                    <div className="price">
+                    <div className="priceAddToCart">
+                        <h4 className="price">Price: £{product.price}</h4>
+                        <button 
+                            className="toCart"
+                            onClick={(event) => addToCart(product, event)}
+                            >Add to Cart
+                        </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                ))}
+        </div>
+        )
     }
 
     return (
