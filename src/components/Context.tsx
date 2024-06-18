@@ -25,20 +25,25 @@ interface ContextProps {
     totalPrice: number;
     setTrolley: React.Dispatch<React.SetStateAction<Cart[]>>;
     addToCart: (cart: Cart, event: React.MouseEvent<HTMLButtonElement>) => void
+    handleCategoryClick: (category: string) => void
+    handleCategoryClickAll: () => void
+    fetchCategories: () => void
     fetchData: () => void;
     viewProducts: () => JSX.Element[];
+    categories: string[];
 }
 
 const Context = createContext<ContextProps | undefined>(undefined)
 
+const Provider: React.FC<{children: ReactNode}> = ({children}) => {
+
     // STATE MANAGEMENT
 
-const Provider: React.FC<{children: ReactNode}> = ({children}) => {
-    const [products, setProducts] = useState<Product[]>([])
-    const [trolley, setTrolley] = useState<Cart[]>([])
-    const [totalPrice, setTotalPrice] = useState<number>(0)
-    const [categories, setCategories] = useState<string[]>([])
-    const [chosenCategory, setChosenCategory] = useState<string | null>(null)
+    const [products, setProducts] = useState<Product[]>([]) // DISPLAYS THE PRODUCTS ONTO THE UI
+    const [trolley, setTrolley] = useState<Cart[]>([]) // HOLDS THE PRODUCTS IN THE CART
+    const [totalPrice, setTotalPrice] = useState<number>(0) // DISPLAYS THE TOTAL PRICE OF THE PRODUCTS IN THE CART ONTO THE UI
+    const [categories, setCategories] = useState<string[]>([]) // DISPLAYS THE CATEGORIES ONTO THE UI
+    const [chosenCategory, setChosenCategory] = useState<string | null>(null) // DISPLAYS THE CHOSEN CATEGORY ONTO THE UI
 
     // FETCH DATA
 
@@ -46,7 +51,6 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
         try {
             const response = await axios.get("https://fakestoreapi.com/products")
             setProducts(response.data)
-            console.log(response.data)
         } catch (error) {
             console.error(error)
         }
@@ -58,23 +62,27 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
         fetchData()
     }, [])
 
-    // VIEW PRODUCTS
+    // VIEW PRODUCTS ON THE UI BY MAPPING THROUGH THE PRODUCTS STATE
 
     const viewProducts = () => {
-        return products.map((product) => (
+        const filteredProducts = chosenCategory ? products.filter((product: Product) => product.category === chosenCategory) : products
+
+        console.log('Chosen category: ', chosenCategory)
+
+        return filteredProducts.map((product) => (
             <div key={product.id} className="productCard">
                 <div className="productInfo">
                     <img className="productPicture" src={product.image} alt={product.title} />
                     <h3 className="productName">{product.title}</h3>
                     <div className="price">
-                    <div className="priceAddToCart">
-                        <h4 className="price">Price: £{product.price}</h4>
-                        <button 
-                            className="toCart"
-                            onClick={(event) => addToCart(product, event)}
-                            >Add to Cart
-                        </button>
-                    </div>
+                        <div className="priceAddToCart">
+                            <h4 className="price">Price: £{product.price}</h4>
+                            <button 
+                                className="toCart"
+                                onClick={(event) => addToCart(product, event)}
+                                >Add to Cart
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,8 +103,6 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
 
         setTrolley((trolley) => [...trolley, cartItem])
         setTotalPrice((totalPrice) => Number((totalPrice + product.price).toFixed(2)))
-        console.log(trolley)
-        console.log(totalPrice)
     }
 
     // FETCHES CATEGORIES
@@ -105,7 +111,6 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
         try{
             const response = await axios.get("https://fakestoreapi.com/products/categories")
             setCategories(response.data)
-            console.log(response.data)
         } catch (error) {
             console.error(`Unable to fetch categories: ${error}`)}
         }
@@ -113,38 +118,17 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
     // HANDLES CATEGORY CLICK
     const handleCategoryClick = (category: string) => {
         setChosenCategory(category)
+        console.log('Chosen category: ', chosenCategory)
     }
 
-    // CHANGES CATEGORY AND DISPLAYS ON UI
-    const changeCategory = () => { 
-        const filteredProducts = chosenCategory ? products.filter((product: Product) => product.category === chosenCategory) : products
+    // HANDLE CATEGORY CLICK(ALL)
 
-        return (
-            <div className="products">
-                {filteredProducts.map((product: Product) => (
-                    <div className="productCard" key={product.id}>
-                    <div className="productInfo">
-                    <img className="productPicture" src={product.image} alt={product.title} />
-                    <h3 className="productName">{product.title}</h3>
-                    <div className="price">
-                    <div className="priceAddToCart">
-                        <h4 className="price">Price: £{product.price}</h4>
-                        <button 
-                            className="toCart"
-                            onClick={(event) => addToCart(product, event)}
-                            >Add to Cart
-                        </button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                ))}
-        </div>
-        )
-    }
+     const handleCategoryClickAll = () => {
+        setChosenCategory(null)
+     }
 
     return (
-        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice }}>
+        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice, handleCategoryClick, handleCategoryClickAll, fetchCategories, categories }}>
             {children}
         </Context.Provider>
     )

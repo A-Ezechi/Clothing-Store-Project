@@ -139,7 +139,7 @@ h2{
 
 /* CATEGORIES */
 
-.categoriesContainer{
+.categoriesOuterContainer{
   height: 40vh;
   background-color: var(--CATEGORIESBGCOLOUR);
   background-image: url(../public/img/background-image.jpeg);
@@ -152,10 +152,19 @@ h2{
   align-items: center;
 }
 
+.categoriesContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+}
+
 .categories{
   display: flex;
   gap: 1rem;
 }
+
+
 
 .category{
   padding: 0.5rem 1rem;
