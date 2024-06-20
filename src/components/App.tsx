@@ -1,6 +1,7 @@
 import Content from "../components/Content"
 import Header from "../components/Header"
 import Categories from "../components/Categories"
+import Cart from "../components/Cart"
 import { Provider } from "./Context"
 
 
@@ -12,6 +13,7 @@ function App() {
         <Header />
         <Categories />
         <Content />
+        <Cart />
       </Provider>
     </div>
   )

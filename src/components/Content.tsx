@@ -4,7 +4,7 @@ import { Context, ContextProps } from "./Context"
 
 const Content: React.FC = () => {
   const context = React.useContext(Context)
-  const {fetchData, viewProducts} = context as ContextProps
+  const {fetchData, viewProducts, chosenCategory} = context as ContextProps
 
   if (!context){
     return null
@@ -17,8 +17,11 @@ const Content: React.FC = () => {
 
 // VIEW PRODUCTS
   return (
-    <div className="contentContainer">
-      {viewProducts()}
+    <div className="outsideContentContainer">
+      <h3 className="chosenCategoryTitle">{chosenCategory}</h3>
+      <div className="contentContainer">
+        {viewProducts()}
+      </div>
     </div>
   )
 }

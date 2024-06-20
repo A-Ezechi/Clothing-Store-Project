@@ -17,6 +17,8 @@ interface Cart {
     id: number
     title: string
     price: number
+    image?: string
+    description?: string
 }
 
 interface ContextProps {
@@ -31,6 +33,7 @@ interface ContextProps {
     fetchData: () => void;
     viewProducts: () => JSX.Element[];
     categories: string[];
+    chosenCategory: string | null;
 }
 
 const Context = createContext<ContextProps | undefined>(undefined)
@@ -128,7 +131,7 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
      }
 
     return (
-        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice, handleCategoryClick, handleCategoryClickAll, fetchCategories, categories }}>
+        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice, handleCategoryClick, handleCategoryClickAll, fetchCategories, categories, chosenCategory }}>
             {children}
         </Context.Provider>
     )
