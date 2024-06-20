@@ -1,10 +1,14 @@
 /* ROOT */
 
 :root{
-  --MAINBGCOLOUR: rgb(49, 49, 49);
-  --CATEGORIESBGCOLOUR: rgba(0, 0, 0, 0.782);
+  --MAINBGCOLOUR: rgb(216, 216, 216);
+  --CATEGORIESBGCOLOUR: white;
   --HEADERBGCOLOUR: rgb(15, 15, 15);
-  --FONTCOLOUR: #fff;
+  --HEADERCOLOUR: whitesmoke;
+  --HEADERCONTAINERBGCOLOUR: rgba(0, 0, 0, 0.927);
+  --LOGOCOLOUR: rgb(57, 132, 147);
+  --FONTCOLOUR: BLACK;
+  --TOCARTBGCOLOUR: rgb(159, 159, 159);
 }
 
 /* RESET */
@@ -22,7 +26,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(0, 0, 0, 0.824);
+  background-color: var(--HEADERCONTAINERBGCOLOUR);
   color: var(--FONTCOLOUR);
   height: 6vh;
   border-bottom: rgba(0, 0, 0, 0.574) 3px solid;
@@ -32,6 +36,7 @@ h2{
     font-size: 1.5rem;
     font-style: italic;
     text-decoration: line-through;
+    color: var(--CATEGORIESBGCOLOUR);
 }
 
 .cart{
@@ -42,28 +47,35 @@ h2{
 }
 
 .viewCartBtn{
-    background-color: transparent;
-    color: var(--MAINBGCOLOUR);
+    background-color: var(--CATEGORIESBGCOLOUR);
+    color: var(--FONTCOLOUR);
     padding: 0.5rem 1rem;
     border-radius: 10px;
-    border: 1px solid var(--FONTCOLOUR);
-    color: var(--FONTCOLOUR);
+    border: 1px solid var(--CATEGORIESBGCOLOUR);
     cursor: pointer;
     font-size: medium;
 }
 
 .viewCartBtn:hover{
-    background-color: var(--FONTCOLOUR);
-    color: var(--MAINBGCOLOUR);
+    background-color: var(--LOGOCOLOUR);
+    color: var(--CATEGORIESBGCOLOUR);
+    border: 1px solid var(--LOGOCOLOUR);
 }
 
 /* CONTENT */
 
 .contentContainer{
-  background-color: var(--CATEGORIESBGCOLOUR);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 3rem;
 }
-
 /* PRODUCTS */
+
+.productCard{
+  width: 100%;
+}
 
 .productInfo{
   display: flex;
@@ -74,9 +86,6 @@ h2{
   padding: 2rem;
   width: 75%;
   height: 100%;
-  box-shadow: 3px 3px 10px black;
-  background-color: var(--MAINBGCOLOUR);
-  border-radius: 10px;
 }
 
 .productName{
@@ -114,13 +123,7 @@ h2{
   gap: 3rem;
 }
 
-.contentContainer{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 5rem;
-    padding: 2rem;
-}
+
 
 .toCart{
     background-color: var(--FONTCOLOUR);
@@ -133,7 +136,7 @@ h2{
 }
 
 .toCart:hover{
-    background-color: rgb(159, 159, 159);
+    background-color: var(--TOCARTBGCOLOUR);
     color: var(--MAINBGCOLOUR);
 }
 
@@ -142,7 +145,7 @@ h2{
 .categoriesOuterContainer{
   height: 40vh;
   background-color: var(--CATEGORIESBGCOLOUR);
-  background-image: url(../public/img/background-image.jpeg);
+  background-image: url(../public/img/white-background-image.jpeg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -171,21 +174,22 @@ h2{
   width: 10rem;
   height: 3rem;
   border-radius: 20px;
-  border: 1px solid var(--FONTCOLOUR);
+  border: 1px solid var(--LOGOCOLOUR);
   text-transform: capitalize;
-  background-color: transparent;
-  color: var(--FONTCOLOUR);
+  background-color: var(--LOGOCOLOUR);
+  color: var(--CATEGORIESBGCOLOUR);
   cursor: pointer;
 }
 
 .category:hover{
-  background-color: var(--FONTCOLOUR);
-  color: var(--MAINBGCOLOUR);
+  background-color: var(--CATEGORIESBGCOLOUR);
+  color: var(--LOGOCOLOUR);
+  border: 1px solid var(--CATEGORIESBGCOLOUR);
 }
 
 h1{
   font-size: 6rem;
-  color: var(--FONTCOLOUR);
+  color: var(--HEADERCOLOUR);
   text-decoration: line-through;
   font-style: italic;
   margin-bottom: 2rem;

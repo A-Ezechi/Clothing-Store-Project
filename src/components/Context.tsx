@@ -37,7 +37,7 @@ const Context = createContext<ContextProps | undefined>(undefined)
 
 const Provider: React.FC<{children: ReactNode}> = ({children}) => {
 
-    // STATE MANAGEMENT
+// STATE MANAGEMENT
 
     const [products, setProducts] = useState<Product[]>([]) // DISPLAYS THE PRODUCTS ONTO THE UI
     const [trolley, setTrolley] = useState<Cart[]>([]) // HOLDS THE PRODUCTS IN THE CART
