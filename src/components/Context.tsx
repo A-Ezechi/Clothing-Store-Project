@@ -1,4 +1,6 @@
 import React, { ReactNode, createContext, useEffect, useState } from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCartPlus} from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 
 // INTERFACES
@@ -25,6 +27,7 @@ interface ContextProps {
     products: Product[];
     trolley: Cart[];
     totalPrice: number;
+    displayCart: boolean;
     setTrolley: React.Dispatch<React.SetStateAction<Cart[]>>;
     addToCart: (cart: Cart, event: React.MouseEvent<HTMLButtonElement>) => void
     handleCategoryClick: (category: string) => void
@@ -34,6 +37,7 @@ interface ContextProps {
     viewProducts: () => JSX.Element[];
     categories: string[];
     chosenCategory: string | null;
+    handleCartClick: () => void
 }
 
 const Context = createContext<ContextProps | undefined>(undefined)
@@ -47,6 +51,7 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
     const [totalPrice, setTotalPrice] = useState<number>(0) // DISPLAYS THE TOTAL PRICE OF THE PRODUCTS IN THE CART ONTO THE UI
     const [categories, setCategories] = useState<string[]>([]) // DISPLAYS THE CATEGORIES ONTO THE UI
     const [chosenCategory, setChosenCategory] = useState<string | null>(null) // DISPLAYS THE CHOSEN CATEGORY ONTO THE UI
+    const [displayCart, setDisplayCart] = useState<boolean>(false)
 
     // FETCH DATA
 
@@ -83,7 +88,7 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
                             <button 
                                 className="toCart"
                                 onClick={(event) => addToCart(product, event)}
-                                >Add to Cart
+                                ><FontAwesomeIcon icon={faCartPlus} />
                             </button>
                         </div>
                     </div>
@@ -129,9 +134,17 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
      const handleCategoryClickAll = () => {
         setChosenCategory(null)
      }
+     
+     // CART DISPLAY STATE MANAGEMENT
+
+    const handleCartClick = () => {
+        setDisplayCart(!displayCart)
+        console.log('Display cart: ', displayCart)
+    }
+
 
     return (
-        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice, handleCategoryClick, handleCategoryClickAll, fetchCategories, categories, chosenCategory }}>
+        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice, handleCategoryClick, handleCategoryClickAll, fetchCategories, categories, chosenCategory, handleCartClick, displayCart }}>
             {children}
         </Context.Provider>
     )

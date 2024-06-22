@@ -6,7 +6,7 @@ import { Context, ContextProps } from './Context'
 const Header: React.FC = () => {
 
   const context = React.useContext(Context)
-  const {totalPrice} = context as ContextProps
+  const {totalPrice, handleCartClick} = context as ContextProps
 
   return (
     <div className="headerContainer">
@@ -14,7 +14,7 @@ const Header: React.FC = () => {
             <h2>A's Wardrobe</h2>
         </div>
         <div className="cart">
-        <button className="viewCartBtn"><FontAwesomeIcon icon={faCartPlus} /> : £ {totalPrice} </button>
+        <button className="viewCartBtn" onClick={handleCartClick}><FontAwesomeIcon icon={faCartPlus} /> : £ {totalPrice} </button>
         </div>
     </div>
   )
