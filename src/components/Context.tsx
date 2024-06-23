@@ -38,6 +38,7 @@ interface ContextProps {
     categories: string[];
     chosenCategory: string | null;
     handleCartClick: () => void
+    removeItem: (index: number) => void
 }
 
 const Context = createContext<ContextProps | undefined>(undefined)
@@ -74,8 +75,6 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
 
     const viewProducts = () => {
         const filteredProducts = chosenCategory ? products.filter((product: Product) => product.category === chosenCategory) : products
-
-        console.log('Chosen category: ', chosenCategory)
 
         return filteredProducts.map((product) => (
             <div key={product.id} className="productCard">
@@ -126,7 +125,6 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
     // HANDLES CATEGORY CLICK
     const handleCategoryClick = (category: string) => {
         setChosenCategory(category)
-        console.log('Chosen category: ', chosenCategory)
     }
 
     // HANDLE CATEGORY CLICK(ALL)
@@ -139,12 +137,22 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
 
     const handleCartClick = () => {
         setDisplayCart(!displayCart)
-        console.log('Display cart: ', displayCart)
     }
 
+    // REMOVE ITEM FROM TROLLEY AND UPDATE PRICE
+
+    const removeItem = (index: number) => {
+        const cartItem = trolley[index]
+        const newTrolley = trolley.filter((_, i) => i !== index)
+        
+        console.log('New Trolley: ', newTrolley)
+        setTrolley(newTrolley)
+        setTotalPrice((totalPrice) => Number((totalPrice - cartItem.price).toFixed(2)))
+    }
+    
 
     return (
-        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice, handleCategoryClick, handleCategoryClickAll, fetchCategories, categories, chosenCategory, handleCartClick, displayCart }}>
+        <Context.Provider value={{ products, trolley, setTrolley, fetchData, viewProducts, addToCart, totalPrice, handleCategoryClick, handleCategoryClickAll, fetchCategories, categories, chosenCategory, handleCartClick, displayCart, removeItem }}>
             {children}
         </Context.Provider>
     )

@@ -245,7 +245,6 @@ h1{
 }
 
 .cartPrice{
-  background-color: yellow;
   width: 100%
 }
 
@@ -262,14 +261,18 @@ h1{
   gap: 2rem;
   width: 100%;
   justify-content: space-between;
+}
 
+.cart{
+  border-bottom: 1px solid var(--LOGOCOLOUR);
 }
 
 .removeFromCart{
-  width: 60px;
-  height: 30px;
   border: none;
   background-color: transparent;
+  font-size: larger;
+  cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 .checkout{
