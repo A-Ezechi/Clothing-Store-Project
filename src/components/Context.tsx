@@ -144,8 +144,6 @@ const Provider: React.FC<{children: ReactNode}> = ({children}) => {
     const removeItem = (index: number) => {
         const cartItem = trolley[index]
         const newTrolley = trolley.filter((_, i) => i !== index)
-        
-        console.log('New Trolley: ', newTrolley)
         setTrolley(newTrolley)
         setTotalPrice((totalPrice) => Number((totalPrice - cartItem.price).toFixed(2)))
     }
