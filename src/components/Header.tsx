@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         <div className="header">
             <h2>A's Wardrobe</h2>
         </div>
-        <div className="cart">
+        <div className="cartContainer">
         <button className="viewCartBtn" onClick={handleCartClick}><FontAwesomeIcon icon={faCartPlus} /> : £ {totalPrice} </button>
         </div>
     </div>
